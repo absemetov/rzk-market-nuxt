@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "staging": "rzk-market-ua",
+    "default": "telegram-bot-4e05c"
+  }
+}

@@ -1,0 +1,16 @@
+<template>
+  <div class="container">
+    <div>
+      <h1 class="title">
+        Catalog 1 nubisoft.io
+        <NuxtLink to="/">Home page</NuxtLink>
+      </h1>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Catalog',
+};
+</script>

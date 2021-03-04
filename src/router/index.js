@@ -32,14 +32,19 @@ function formatRoutes(defaultRoutes, domain) {
       routes.push({
         path: route.path.replace(new RegExp(`/${domain}/?`), "/"),
         component: route.component,
-        name: route.name,
+        name: route.name
       });
     }
   });
 
+  //if domain empty use default route
   console.log(defaultRoutes);
   console.log(domain);
   console.log(routes);
+
+  if(routes.length == 0) {
+    return defaultRoutes;
+  }
 
   return routes;
 }

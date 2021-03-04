@@ -1,19 +1,16 @@
 <template>
   <div>
-    <v-avatar size="128">
-      <img
-        src="https://gravatar.com/avatar/a271283ed28c06443473f6d58acfa988?s=200"
-        alt="John"
-      >
-    </v-avatar>
-    Nadir absemetov
+    <NuxtLink to="/rzk.com.ru">rzk.com.ru</NuxtLink>
+    <NuxtLink to="/absemetov.org.ua">absemetov.org.ua</NuxtLink>
+    <NuxtLink to="/nilson.com.ua">nilson.com.ua</NuxtLink>
+    <NuxtLink to="/nilson.com.ua/catalog">nilson.com.ua/catalog</NuxtLink>
   </div>
 </template>
 
 <script>
 export default {
   head: {
-    title: 'Absemetov Nadir',
+    title: 'RZK Market 2.0',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -23,7 +20,7 @@ export default {
         content: 'my website description'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicons/absemetov.org.ua.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicons/rzk.com.ua.ico' }]
   }
 }
 </script>

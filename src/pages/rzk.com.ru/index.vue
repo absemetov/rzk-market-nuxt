@@ -3,6 +3,7 @@
   type="success"
 >
 Comming soon! +7 (978) 89 86 431 Электротовары оптом
+<NuxtLink to="/catalog">Catalog</NuxtLink>
 </v-alert>
 </template>
 <script>

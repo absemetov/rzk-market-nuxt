@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <h1 class="title">
-        Catalog 1 nubisoft.io
+        Catalog
         <NuxtLink to="/">Home page</NuxtLink>
       </h1>
     </div>

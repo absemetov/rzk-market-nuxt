@@ -1,10 +1,13 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-toolbar-title>RZK Market 2.0</v-toolbar-title>
+      <v-toolbar-title>
+        <NuxtLink v-if="RegExp('rzk.com.ru').test($route.name)" to="/" class="text-decoration-none black--text">RZK Market 2.0 nuxt-link</NuxtLink>
+        <a v-else href="//rzk.com.ru" class="text-decoration-none black--text">RZK Market 2.0</a>
+      </v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <v-container fluid>
+      <v-container>
         <nuxt/>
       </v-container>
     </v-main>

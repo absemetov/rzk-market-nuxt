@@ -1,11 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-toolbar-title>
-        <NuxtLink v-if="RegExp('rzk.com.ru').test($route.name)" to="/" class="text-decoration-none black--text">RZK Market 2.0 nuxt-link</NuxtLink>
-        <a v-else href="//rzk.com.ru" class="text-decoration-none black--text">RZK Market 2.0</a>
-      </v-toolbar-title>
-    </v-app-bar>
+    <Navbar/>
     <v-main>
       <v-container>
         <nuxt/>
@@ -18,7 +13,10 @@
 </template>
 
 <script>
+  import Navbar from "@/components/Navbar";
   export default {
-
+    components: {
+      Navbar
+    }
   }
 </script>

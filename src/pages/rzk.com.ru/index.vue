@@ -4,22 +4,22 @@
 >
 Comming soon! +7 (978) 89 86 431 Электротовары оптом
 <NuxtLink to="/catalog">Catalog</NuxtLink>
+  <ul>
+    <li v-for="currency of currencies" :key="currency.id">
+      <h1>{{ currency.id }} {{ currency.rateBuy }} / {{ currency.rateSell }}</h1>
+    </li>
+  </ul>
 </v-alert>
 </template>
 <script>
 export default {
-  head: {
-    title: 'RZK Market 2.0',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'my website description'
-      }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicons/rzk.com.ua.ico' }]
+  async asyncData({ params, $http, $fire }) {
+    //const users = await $http.$get(`https://jsonplaceholder.typicode.com/users`);
+    const snapshot = await $fire.firestore.collection('currencies').get();
+    const currencies = snapshot.docs.map( doc => {
+      return {id: doc.id, ...doc.data()}
+    });
+    return { currencies }
   }
 }
 </script>

@@ -38,9 +38,9 @@ function formatRoutes(defaultRoutes, domain) {
   });
 
   //if domain empty use default route
-  console.log(defaultRoutes);
-  console.log(domain);
-  console.log(routes);
+  //console.log(defaultRoutes);
+  //console.log(domain);
+  //console.log(routes);
 
   if(routes.length == 0) {
     return defaultRoutes;

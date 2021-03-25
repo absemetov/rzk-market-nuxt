@@ -1,6 +1,6 @@
 # nuxt.js build output
-functions/.nuxt
-public/_nuxt
+functions/.nuxt/
+public/
 # Logs
 logs
 *.log

@@ -107,18 +107,18 @@ export default {
   head: {
     title: 'Nadir Absemetov',
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
+        hid: 'description',
         name: 'description',
         content: 'Nadir Absemetov, Сайт Надира Абсеметова.'
       },
       {
+        hid: 'keywords',
         name: 'keywords',
-        content: 'надир, абсеметов, nadir, absemetov, абсеметов надир, absemetov nadir, rzk маркет, rzk market'
+        content: 'надир, абсеметов, nadir, absemetov, абсеметов надир, absemetov nadir'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicons/absemetov.org.ua.ico' }]
+    link: [{ hid: 'icon', rel: 'icon', type: 'image/x-icon', href: '/favicons/absemetov.org.ua.ico' }]
   }
 }
 </script>

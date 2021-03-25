@@ -19,8 +19,7 @@ export default {
         name: 'description',
         content: 'my website description'
       }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicons/rzk.com.ua.ico' }]
+    ]
   }
 }
 </script>

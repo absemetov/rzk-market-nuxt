@@ -5,14 +5,12 @@
     "private": true,
     "license": "MIT",
     "scripts": {
-      "dev": "cd src && npm run dev",
-      "serve": "firebase serve --only functions,hosting",
-      "build": "cd src && npm run build",
-      "p-s": "rm -r functions/.nuxt/ && mkdir -p functions/.nuxt/dist && cp -r src/.nuxt/dist/server/ functions/.nuxt/dist/",
-      "p-c": "rm -r public/ && mkdir -p public/_nuxt && cp -r src/.nuxt/dist/client/. public/_nuxt/ && cp -r src/static/. public/ && cp -r src/assets/. public/",
-      "deploy": "npm run p-s && npm run p-c && firebase deploy"
+        "dev": "cd src && npm run dev",
+        "serve": "firebase serve --only functions,hosting",
+        "build": "cd src && npm run build",
+        "p-s": "rm -r functions/.nuxt/ && mkdir -p functions/.nuxt/dist && cp -r src/.nuxt/dist/server/ functions/.nuxt/dist/",
+        "p-c": "rm -r public/ && mkdir -p public/_nuxt && cp -r src/.nuxt/dist/client/. public/_nuxt/ && cp -r src/static/. public/ && cp -r src/assets/. public/",
+        "deploy": "npm run p-s && npm run p-c && firebase deploy"
     },
-    "engines": {},
-    "dependencies": {},
-    "devDependencies": {}
-  }
+    "engines": {}
+}

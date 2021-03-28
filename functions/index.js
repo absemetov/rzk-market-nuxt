@@ -1,7 +1,9 @@
 const app = require('./app');
-const bot = require('./bot');
+//const bot = require('./bot');
+const mono = require('./mono');
 exports.app = app.app;
-exports.bot = bot.bot;
+//exports.bot = bot.bot;
+exports.mono = mono.mono;
 
 
 //test ssr

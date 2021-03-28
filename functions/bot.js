@@ -4,7 +4,7 @@ const {Telegraf, Markup} = require("telegraf");
 const axios = require("axios");
 const cc = require("currency-codes");
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-let Validator = require('validatorjs');
+const Validator = require('validatorjs');
 
 admin.initializeApp();
 
@@ -28,19 +28,7 @@ bot.use(async (ctx, next_call) => {
   return;
 });
 
-//MonoBankApi
-async function getMonoCurrency(currency) {
-    try {
-      const allCurrencyMonobank = await axios.get("https://api.monobank.ua/bank/currency");
-  
-      return allCurrencyMonobank.data.find((data) => {
-        return data.currencyCodeA === Number(currency.number);
-      });
-  
-    } catch (error) {
-      return false;
-    }
-  }
+
   
   //Test Tags
   /* eslint-disable promise/always-return*/

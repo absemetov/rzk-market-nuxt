@@ -23,7 +23,8 @@ async function updateData(currenciesFirestore) {
     });
 
     //save data
-    const dateUpdated = Math.floor(Date.now() / 1000)
+    const dateUpdated = Math.floor(Date.now() / 1000);
+
     await firebase.firestore().doc('currencies/USD').set({data_updated: dateUpdated, ...USD});
     await firebase.firestore().doc('currencies/EUR').set({data_updated: dateUpdated, ...EUR});
     await firebase.firestore().doc('currencies/RUB').set({data_updated: dateUpdated, ...RUB});
@@ -32,47 +33,35 @@ async function updateData(currenciesFirestore) {
 
   } catch(error) {
       //res.send(error.response.data.errorDescription);
-      if (currenciesFirestore.empty) {
-        return error;
-      } else {
-        //if error return old data
-        let currencyResult = {};
+      //if error return old data
+      let currencyResult = {};
 
-        currenciesFirestore.forEach(doc => {
-          currencyResult[doc.id] = doc.data();
-        });
-        return currencyResult;
-      }
-      
+      currenciesFirestore.forEach(doc => {
+        currencyResult[doc.id] = doc.data();
+      });
+
+      return currencyResult;      
   }
 }
-    
-exports.mono = functions.https.onRequest(async (req, res) => {
+
+exports.mono = async function() {
 
   const currenciesFirestore = await firebase.firestore().collection('currencies').get();
   
   let currencyResult = {};
 
-  if (currenciesFirestore.empty) {
-    //res.send('No matching documents.');
-    //create new data
-    currencyResult = await updateData(currenciesFirestore);
-  } else {
-    //update data
-    const date_timestamp  = Math.floor(Date.now() / 1000);
+  const date_timestamp  = Math.floor(Date.now() / 1000);
 
-    currenciesFirestore.forEach(doc => {
-      let timeDiff =  date_timestamp - doc.data().data_updated;
-      if (timeDiff < 600) {
-        currencyResult[doc.id] = doc.data();
-      }
-    });
-  }
-
+  currenciesFirestore.forEach(doc => {
+    let timeDiff =  date_timestamp - doc.data().data_updated;
+    if (timeDiff < 60) {
+      currencyResult[doc.id] = doc.data();
+    }
+  });
+  //if data not exist
   if ( Object.keys(currencyResult).length === 0 ) {
     currencyResult = await updateData(currenciesFirestore);
   }
   
-  res.send(currencyResult);
-
-});
+  return currencyResult;
+}

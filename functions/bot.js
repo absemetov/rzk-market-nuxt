@@ -6,7 +6,7 @@ const cc = require("currency-codes");
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const Validator = require('validatorjs');
 
-admin.initializeApp();
+const mono = require('./mono');
 
 // spreadsheet key is the long id in the sheets URL
 const doc = new GoogleSpreadsheet('1NdlYGQb3qUiS5D7rkouhZZ8Q7KvoJ6kTpKMtF2o5oVM');
@@ -135,67 +135,18 @@ bot.use(async (ctx, next_call) => {
   
   //listen all text messages
   bot.on('text', async (ctx) => {
-    //Convers currency name to code
-    const currency = cc.code(ctx.message.text);
     
-    let currencyRate = {
-      rateBuy: 0,
-      rateSell: 0
-    };
-  
-    //Check for existing currency
-    if (!currency) {
-      return ctx.reply("Currency didnt found", Markup.keyboard([
-        'sheet', 'USD', 'EUR', 'RUB'
-        ]).resize().extra());
-    }
-  
-    if(!["USD", "EUR", "RUB"].includes(currency.code)) {
-      return ctx.reply("Use only USD, EUR, RUB currencies!");
-    }
+    currency = await mono.mono();
     
-    //Get currency from Firebase
-    const currencyFirebase = await admin.firestore().doc('currencies/' + currency.code).get();
-    
-    //Update data
-    if (currencyFirebase.exists) {
-      //update rate, check timestamp
-      currencyRate = currencyFirebase.data();
-  
-      let timeDiff = Math.floor(Date.now() / 1000) - currencyRate.date;
-      
-      if (timeDiff > 60) {
-        let currencyMono = await getMonoCurrency(currency);
-      
-        if (currencyMono) {
-          currencyMono.date = Math.floor(Date.now() / 1000);
-          await admin.firestore().doc('currencies/' + currency.code).update(currencyMono); 
-          currencyRate = currencyMono;
-        }
-      }
-  
-    } else {
-  
-      //return ctx.reply("No such document!");
-      //add New currency
-      let currencyMono = await getMonoCurrency(currency);
-      
-      if (currencyMono) {
-        currencyMono.date = Math.floor(Date.now() / 1000);
-        await admin.firestore().doc('currencies/' + currency.code).set(currencyMono);
-        currencyRate = currencyMono; 
-      }
-    }
-  
     return ctx.replyWithMarkdown(`
-    CURRENCY: *${currency.code}*
-  RATE BUY: *${currencyRate.rateBuy}*
-  RATE SELL: *${currencyRate.rateSell}*
+    CURRENCY: *${currency[ctx.message.text]}*
+  RATE BUY: *${currency[ctx.message.text].rateBuy}*
+  RATE SELL: *${currency[ctx.message.text].rateSell}*
     `); 
   
   });
   
-  //bot.launch();
+  bot.launch();
   
   exports.bot = functions.https.onRequest(async (req, res) => {
       await bot.handleUpdate(req.body);
